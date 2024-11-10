@@ -1,0 +1,40 @@
+// Font
+$font-family: "Gilroy", sans-serif;
+$second-family: "Montserrat", sans-serif;
+$main-font-size: 14px;
+
+// Colors
+$color-white: #fff;
+$color-dark: #222;
+$color-light: #EBEBEB;
+$color-primary: #c6876d;
+$color-gray: #222222b3;
+$color-red: #eb5757;
+$color-green: #219653;
+$color-blue: #2f80ed;
+$color-purple: #9b51e0;
+
+:root {
+    --font-family: "Gilroy", sans-serif;
+    --second-family: "Montserrat", sans-serif;
+
+    --color-white: #fff;
+    --color-dark: #222;
+    --color-light: #EBEBEB;
+    --color-primary: #c6876d;
+    --color-gray: #222222b3;
+    --color-red: #eb5757;
+    --color-green: #219653;
+    --color-blue: #2f80ed;
+    --color-purple: #9b51e0;
+
+    --mainFz: 14px;
+    --headerHeight: 8.445em;
+}
+
+// Transitions
+$transition-base: 0.3s ease;
+$transition-slow: .9s ease;
+
+
+$menuMob: 992;

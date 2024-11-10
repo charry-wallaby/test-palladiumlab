@@ -1,0 +1,20 @@
+mixin header()
+    - var links = ['Главная', 'О компании', 'Услуги', 'Цены', 'Портфолио', 'Контакты'];
+
+    header#header.header
+        .container-full.header__container
+            .header__left
+                +icon('map-marker', { w: 18, h: 18 })
+            .header__center
+                nav.header__nav
+                    ul.header__nav-list
+                        each link in links
+                            li.header__nav-item
+                                a.header__nav-link(href="#")= link
+                a.header__logo(href="#")
+                    +icon('logo', { w: 30, h: 30 })
+            .header__right
+                +icon('phone', { w: 18, h: 18 })
+                    
+                //- button.menu-trigger.js-menu-trigger
+                //-     span

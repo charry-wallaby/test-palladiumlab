@@ -1,0 +1,12 @@
+mixin footer(data)
+    - data = data || {}
+
+    footer#footer.footer
+        .container.footer__container
+            .footer__wrap
+                .footer__right 
+                    p.footer__text 
+                        | © 2022 Сompany.
+                        | #[span.footer__text_sm Соглашение об обработке персональных данных и политика конфиденциальности]
+                .footer__left 
+                    p.footer__text #[span.footer__text_sm Сделано в] Palladiumlab

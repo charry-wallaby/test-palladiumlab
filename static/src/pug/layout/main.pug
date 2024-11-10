@@ -1,0 +1,63 @@
+include ../utils/mixins
+include ../utils/includes
+- var pathPrefix = '';
+- var title = '';
+
+- var stageURL = '';
+- var currentURL = 'http://localhost:8081';
+
+// metablocks
+- var pathUrl = 'http://localhost:8081/';
+- var metaTitle = '';
+- var metaLink = '';
+- var metaDescription ='';
+//- - var metaOgImage = `${pathUrl}/img/socials/og_image-${LANG}.jpg`;
+//- - var metaTwImage = `${pathUrl}/img/socials/twittercard_image-${LANG}.jpg`;
+
+block variables
+
+doctype html
+html(lang='ru')
+    head 
+        meta(charset='utf-8')
+        meta(http-equiv="x-ua-compatible" content="ie=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+        meta(content="telephone=no" name="format-detection")
+        meta(name="HandheldFriendly" content="true")
+        //- +meta()
+        //- +favicon()
+
+        link(rel='stylesheet' href='/css/app.css')
+
+        block head
+
+    body.body
+        +header()
+        block header
+
+        main.main
+            block content
+
+        +footer()
+        block footer
+
+        script.
+            // header height global
+            window.headerHeight = function () {
+                let h = document.getElementById('header');
+                document.documentElement.style.setProperty('--headerHeight', h.offsetHeight + 'px');
+            }
+            //- footer height global
+            window.footerHeight = function () {
+                let f = document.getElementById('footer');
+                document.documentElement.style.setProperty('--footerHeight', f.offsetHeight + 'px');
+            }
+
+            document.addEventListener("DOMContentLoaded", function (event) {
+                window.headerHeight();
+                window.footerHeight();
+            });
+
+        script(type='text/javascript' src='/js/vendors.js')
+        script(type='text/javascript' src='/js/app.js')
+        block script

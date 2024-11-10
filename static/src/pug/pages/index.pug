@@ -1,0 +1,16 @@
+extends ../layout/main
+
+block variables
+    - title = 'title';
+    - pageClass = '';
+
+block content
+    section.intro 
+        .container-full
+            .intro__wrap
+                h1.intro__title.text-center 
+                    | Ремонт #[span.outlined-text и] дизайн #[br]
+                    | #[span.outlined-text в Москве и Московской области]
+                a.btn(href="#")
+                    span Оставить заявку
+                    hr

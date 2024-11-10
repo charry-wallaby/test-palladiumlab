@@ -1,0 +1,26 @@
+.footer{
+    position: relative;
+    width: 100%;
+    background-color: $color-white;
+    z-index: 2;
+    color: $color-dark;
+
+    &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid $color-dark;
+        padding: rem(24, 14) 0;
+    }
+
+    &__text {
+        margin: 0;
+
+        &_sm {
+            font-family: $second-family;
+            font-weight: 400;
+            font-size: rem(13, 14);
+            line-height: 1.85;
+        }
+    }
+}

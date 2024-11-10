@@ -1,0 +1,10 @@
+.intro {
+    padding-top: calc(rem(64, 14) + var(--headerHeight));
+    width: 100%;
+    height: 100vh;
+    background-color: $color-white;
+
+    &__title {
+        margin-bottom: rem(48, 14);
+    }
+}
