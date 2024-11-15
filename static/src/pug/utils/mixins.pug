@@ -13,10 +13,10 @@ mixin img(className, name, ext, alt, folder, w, h)
         source(media="(orientation: portrait)", srcset=`img/${folder}/${name}.${ext}`)
         img(class=`${className}` src=`img/${folder}/${name}.${ext}` alt=`${alt}` width=`${w}` height=`${h}`)
 
-mixin image(mediumSrc, largeSrc, alt, lazy = true)
+mixin image(folder, smallSrc, largeSrc, alt, lazy = true)
     picture
-        source(media="(min-width: 1440px)" srcset=`${largeSrc}.webp` type="image/webp")
-        source(media="(min-width: 1440px)" srcset=`${largeSrc}.jpg`)
+        source(media="(min-width: 1440px)" srcset=`img/${folder}/${largeSrc}@2x.webp` type="image/webp")
+        source(media="(min-width: 1440px)" srcset=`img/${folder}/${largeSrc}@2x.jpg`)
 
-        source(srcset=`${mediumSrc}.webp` type="image/webp")
-        img(src=`${mediumSrc}.jpg` alt=alt loading=(lazy ? "lazy" : "eager"))
+        source(srcset=`img/${folder}/${smallSrc}.webp` type="image/webp")
+        img(src=`img/${folder}/${smallSrc}.jpg` alt!=alt loading=(lazy ? "lazy" : "eager"))

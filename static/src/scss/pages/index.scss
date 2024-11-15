@@ -1,10 +1,399 @@
 .intro {
-    padding-top: calc(rem(64, 14) + var(--headerHeight));
+    position: relative;
+    padding-top: calc(vh(64px) + var(--headerHeight));
     width: 100%;
     height: 100vh;
     background-color: $color-white;
 
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        z-index: 1;
+    }
+
+    &__title {
+        margin-bottom: vh(48px);
+        text-align: center;
+    }
+
+    &__bottom {
+        width: 100%;
+    }
+
+    &__services {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+
+        &-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid $color-white-light;
+            font-weight: 800;
+            font-size: rem(20, 14);
+            text-align: center;
+            color: $color-white;
+            padding: rem(27, 14) rem(15, 14);
+        }
+    }
+
+    &__anchor-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(40, 14);
+        height: rem(40, 14);
+        margin: rem(23, 14) auto;
+        border-radius: 50%;
+        border: 1px solid $color-white-light;
+
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        &::before {
+            border: 1.5px solid transparent;
+        }
+
+        &::after {
+            border: 0 solid transparent;
+        }
+
+        @include hover {
+            &::before {
+                border-top-color: $color-white;
+                border-right-color: $color-white;
+                border-bottom-color: $color-white;
+                transition: border-top-color 0.15s linear,
+                    border-right-color 0.15s linear 0.1s,
+                    border-bottom-color 0.15s linear 0.2s;
+            }
+            &::after {
+                border-top: 1.5px solid $color-white;
+                border-left-width: 1.5px;
+                border-right-width: 1.5px;
+                transform: rotate(270deg);
+                transition: transform 0.4s linear 0s,
+                    border-left-width 0s linear 0.35s;
+            }
+        }
+    }
+
+    &__bg-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: vh(344px);
+        background: url("../../img/intro/main.webp") no-repeat center center;
+        background-size: cover;
+    }
+}
+
+.projects {
+    padding: rem(136, 14) 0;
+
+    @include r(991) {
+        padding: rem(100, 14) 0;
+    }
+
     &__title {
         margin-bottom: rem(48, 14);
+        @include headingLine;
+
+        @include r(991) {
+            text-align: center;
+        }
+    }
+
+    &__wrap {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(10, 14);
+        width: 100%;
+        margin-bottom: rem(64, 14);
+
+        @include r(991) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        // @include r(480) {
+        //     grid-template-columns: 1fr;
+        // }
+    }
+
+    .card {
+        position: relative;
+        overflow: hidden;
+        grid-column: span 1;
+        grid-row: span 1;
+        cursor: pointer;
+
+        &:first-child,
+        &:last-child {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        &:nth-child(2),
+        &:nth-child(5) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        @include r(991) {
+            &:first-child {
+                order: 0;
+            }
+
+            &:nth-child(2) {
+                order: 2;
+            }
+
+            &:nth-child(3) {
+                order: 1;
+            }
+
+            &:nth-child(4) {
+                order: 3;
+            }
+
+            &:nth-child(5) {
+                order: 4;
+            }
+
+            &:nth-child(6) {
+                order: 5;
+            }
+
+            &:nth-child(7) {
+                order: 6;
+            }
+
+            &:last-child {
+                order: 7;
+            }
+        }
+
+        &::before,
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transition: opacity $transition-base;
+        }
+        
+        &::before {
+            opacity: 1;
+            background-image: linear-gradient(360deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%);
+        }
+
+        &::after {
+            opacity: 0;
+            background-image: linear-gradient(360deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        &__title {
+            position: absolute;
+            top: rem(32, 14);
+            left: rem(32, 14);
+            z-index: 2;
+            font-size: rem(20, 14);
+            line-height: 1.2;
+            color: $color-white;
+            margin: 0;
+
+            @include r(480) {
+                top: rem(10, 14);
+                left: rem(10, 14);
+                font-size: rem(16, 14);
+            }
+        }
+
+        &__img-block {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1);
+            transition: transform $transition-slow;
+        }
+
+        &__info {
+            position: absolute;
+            bottom: rem(32, 14);
+            left: rem(32, 14);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: rem(32, 14);
+            z-index: 2;
+            opacity: 0;
+            transition: opacity $transition-base;
+
+            @include r(480){
+                bottom: rem(10, 14);
+                left: rem(10, 14);
+                gap: rem(16, 14);
+            }
+
+            &-label {
+                margin: 0 0 rem(8, 14);
+                font-family: $second-family;
+                font-weight: 500;
+                font-size: rem(10, 14);
+                line-height: 1.2;
+                color: rgba($color-white, 0.7);
+
+                @include r(480) {
+                    font-size: rem(8, 14);
+                    line-height: 1;
+                    margin-bottom: rem(6, 14);
+                }
+            }
+
+            &-title {
+                margin: 0;
+                line-height: 1.4;
+                color: $color-white;
+
+                @include r(480) {
+                    font-size: rem(12, 14);
+                    line-height: 1;
+                }
+            }
+        }
+
+        &:hover {
+            &::before {
+                opacity: 0;
+            }
+
+            &::after {
+                opacity: 1;
+            }
+
+            img {
+                transform: scale(1.05);
+            }
+
+            .card__info {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.contacts {
+    padding-bottom: rem(135, 14);
+
+    @include r(991) {
+        padding-bottom: rem(100, 14);
+    }
+
+    &__title {
+        margin-bottom: rem(48, 14);
+        @include headingLine;
+
+        @include r(991) {
+            text-align: center;
+        }
+    }
+
+    &__wrap {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(30, 14);
+        width: 100%;
+
+        @include r(991) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include r(480) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__col {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-content: start;
+        gap: rem(48, 14);
+        width: 100%;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-content: start;
+        gap: rem(8, 14);
+        width: 100%;
+
+        h4 {
+            margin: 0;
+            
+            sup {
+                top: -3px;
+            }
+        }
+
+        p, .link {
+            font-family: $second-family;
+            font-weight: 400;
+            font-size: rem(13, 14);
+            line-height: 1.85;
+            color: $color-dark;
+            margin: 0;
+        }
+    }
+
+    .social__links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: rem(10, 14);
+
+        &-item {
+            border-radius: 2px;
+            width: rem(30, 14);
+            height: rem(30, 14);
+            background-color: $color-dark;
+            transition: border-radius $transition-base;
+
+            @include hover {
+                border-radius: 30%;
+            }
+        }
+    }
+
+    .contacts__form {
+        gap: rem(15, 14);
+
+        h4 {
+            margin: 0;
+        }
     }
 }

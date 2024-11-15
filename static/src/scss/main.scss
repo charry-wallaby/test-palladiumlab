@@ -3,8 +3,6 @@
 @import "utils/fonts";
 @import "utils/normalize";
 
-@import "../../node_modules/swiper/swiper-bundle";
-
 html,
 body {
     min-height: 100%;
@@ -13,11 +11,7 @@ body {
 html {
     font-size: $main-font-size;
     overflow-x: hidden;
-
-    &.loading,
-    &.overflow {
-        overflow: hidden;
-    }
+    scroll-behavior: smooth;
 }
 
 body {
@@ -32,8 +26,8 @@ body {
     position: relative;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    &.menu-open,
-    &.loading {
+
+    &.menu-open {
         overflow: hidden;
     }
 }
@@ -80,6 +74,7 @@ svg {
 button,
 a {
     cursor: pointer;
+    color: currentColor;
 }
 
 @include r(767) {
@@ -100,11 +95,18 @@ b {
     padding-left: rem(15, 14);
     padding-right: rem(15, 14);
     width: 100%;
-    @include rmin(768) {
-        padding-left: rem(70, 14);
-        padding-right: rem(70, 14);
+
+    @include rmin(576) {
+        padding-left: rem(30, 14);
+        padding-right: rem(30, 14);
     }
-    @include rmin(1024) {
+
+    @include rmin(992) {
+        padding-left: rem(50, 14);
+        padding-right: rem(50, 14);
+    }
+
+    @include rmin(1136) {
         padding-left: rem(100, 14);
         padding-right: rem(100, 14);
     }
@@ -118,22 +120,6 @@ b {
         max-width: 100%;
         width: 100%;
     }
-}
-
-.underlineHideOnHover {
-    @include underlineHideOnHover;
-    &a {
-        text-decoration: none;
-        vertical-align: bottom;
-    }
-}
-
-.visually-hidden {
-    position: absolute;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
 }
 
 // Components

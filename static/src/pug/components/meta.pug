@@ -3,14 +3,14 @@ mixin meta()
     meta(name="description", content=metaDescription)
     meta(property='og:title', content=metaTitle)
     meta(property='og:description', content=metaDescription)
-    meta(property='og:image', content=metaOgImage)
+    meta(property='og:image', content!=metaOgImage)
     meta(property='og:type', content='article')
-    meta(property='og:url', content=metaLink)
+    meta(property='og:url', content!=metaLink)
     meta(name='twitter:card', content='')
     meta(name='twitter:site', content='')
     meta(name='twitter:title', content=metaTitle)
     meta(name='twitter:description', content=metaDescription)
-    meta(name='twitter:image', content=metaTwImage)
+    meta(name='twitter:image', content!=metaTwImage)
 
 
 

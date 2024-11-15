@@ -6,7 +6,8 @@ mixin footer(data)
             .footer__wrap
                 .footer__right 
                     p.footer__text 
-                        | © 2022 Сompany.
-                        | #[span.footer__text_sm Соглашение об обработке персональных данных и политика конфиденциальности]
+                        | © 2022 Сompany. 
+                        span.footer__text_sm
+                            | #[a.link(href="#") Соглашение об обработке персональных данных] и #[a.link(href="#") политика конфиденциальности]
                 .footer__left 
-                    p.footer__text #[span.footer__text_sm Сделано в] Palladiumlab
+                    p.footer__text #[span.footer__text_sm Сделано в] #[a.link(href="#") Palladiumlab]

@@ -4,13 +4,164 @@ block variables
     - title = 'title';
     - pageClass = '';
 
+    -
+        var projects = [
+            {
+                title: 'Новостройка',
+                deadline: '4 - 5 дней',
+                cost: 'По запросу',
+                pathImg: 'projects',
+                nameImg: 'example1',
+            },
+            {
+                title: 'Новостройка',
+                deadline: '6 - 7 дней',
+                cost: 'Нет данных',
+                pathImg: 'projects',
+                nameImg: 'example2',
+            },
+            {
+                title: 'Вторичка',
+                deadline: '3 - 4 дня',
+                cost: 'По запросу',
+                pathImg: 'projects',
+                nameImg: 'example3',
+            },
+            {
+                title: 'Вторичка',
+                deadline: '4 - 5 дней',
+                cost: 'Нет данных',
+                pathImg: 'projects',
+                nameImg: 'example4',
+            },
+            {
+                title: 'Новостройка',
+                deadline: '6 - 7 дней',
+                cost: 'По запросу',
+                pathImg: 'projects',
+                nameImg: 'example5',
+            },
+            {
+                title: 'Вторичка',
+                deadline: '4 - 5 дней',
+                cost: 'Нет данных',
+                pathImg: 'projects',
+                nameImg: 'example6',
+            },
+            {
+                title: 'Вторичка',
+                deadline: '4 - 5 дней',
+                cost: 'По запросу',
+                pathImg: 'projects',
+                nameImg: 'example7',
+            },
+            {
+                title: 'Новостройка',
+                deadline: '3 - 5 дней',
+                cost: 'Нет данных',
+                pathImg: 'projects',
+                nameImg: 'example8',
+            }
+        ];
+
 block content
     section.intro 
-        .container-full
-            .intro__wrap
-                h1.intro__title.text-center 
+        .container-full.intro__container
+            .intro__content
+                h1.intro__title 
                     | Ремонт #[span.outlined-text и] дизайн #[br]
                     | #[span.outlined-text в Москве и Московской области]
-                a.btn(href="#")
-                    span Оставить заявку
-                    hr
+                +button("Оставить заявку")
+            .intro__bottom
+                .intro__services
+                    .intro__services-item
+                        span Услуги по ремонту
+                    .intro__services-item 
+                        span Виды работ
+                    .intro__services-item 
+                        span Дизайн интерьера
+                    .intro__services-item 
+                        span Ремонт помещений
+                a.intro__anchor-link(href="#projects")
+                    +icon('arrow-down', {w: 15, h: 15})
+        .intro__bg-bottom
+
+    section.projects#projects 
+        .container.projects__container 
+            h2.h2.projects__title Примеры #[span.outlined-text выполненных] работ
+            .projects__wrap
+                each project in projects
+                    .projects__item.card
+                        p.card__title=project.title
+                        .card__img-block
+                            +image(project.pathImg, project.nameImg, project.nameImg)
+                        .card__info
+                            .card__info-col
+                                p.card__info-label Сроки
+                                p.card__info-title=project.deadline
+                            .card__info-col
+                                p.card__info-label Стоимость
+                                p.card__info-title=project.cost
+            
+            +button("Все проекты")
+
+    section.contacts 
+        .container.contacts__container 
+            h2.h2.contacts__title Связаться #[span.outlined-text с нами]
+            .contacts__wrap 
+                .contacts__col 
+                    .contacts__row 
+                        h4 Офис
+                        p Москва, ул. Уличная, д. 1, оф. 1
+                    .contacts__row 
+                        h4 E-mail
+                        a.link(href="mailto:company@company.ru") company@company.ru
+                    .contacts__row 
+                        h4 Социальные сети
+                        .social__links 
+                            a.social__links-item(href="#") 
+                            a.social__links-item(href="#") 
+                            a.social__links-item(href="#") 
+                .contacts__col 
+                    .contacts__row 
+                        h4 Режим работы
+                        p Пн-Вт: 10#[sup 00] — 19#[sup 00]; Сб-Вс: 10#[sup 00] — 15#[sup 00]
+                    .contacts__row 
+                        h4 Телефон
+                        a.link(href="tel:+78009000000") 8 (800) 900-00-00
+                .contacts__col.contacts__form
+                    h4 Остались вопросы?
+                    form.form(action="#")
+                        .form__field 
+                            label.form__label(for="name") Ваше имя
+                            input.form__input(
+                                type="text", 
+                                name="name", 
+                                id="name",
+                                placeholder="Иван Иванов",
+                                required
+                            )
+                        .form__field 
+                            label.form__label(for="contact") Телефон / E-mail
+                            input.form__input(
+                                type="text", 
+                                ame="contact", 
+                                id="contact",
+                                placeholder="example@example.com",
+                                required
+                            )
+                        .form__field 
+                            label.form__label(for="message") Ваше сообщение
+                            input.form__input.form__input_message(
+                                name="message", 
+                                id="message",
+                                placeholder="Текст обращения",
+                                required
+                            )
+                            label.form__file(for="file")
+                                input#file(type="file", name="file", accept="image/*", multiple)
+                                +icon("clip", {w: 18, h: 18})
+                        .form__field 
+                            p.form__text Нажимая на кнопку «Получить консультацию», вы соглашаетесь 
+                                | на #[a.link-dots(href="#") обработку персональных данных] 
+                        +button("Получить консультацию", "form__btn")
