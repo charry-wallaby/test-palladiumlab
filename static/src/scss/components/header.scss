@@ -6,15 +6,33 @@
     z-index: 99;
     border-bottom: 1px solid $color-light;
 
+    @include r(991) {
+        position: fixed;
+        background-color: $color-white;
+    }
+
     a{
         text-decoration: none;
     }
 
     &__container{
         display: grid;
-        grid-template-columns: 86px 1fr 86px;
+        grid-template-columns: vw(86px) 1fr vw(86px);
         align-items: center;
         justify-content: space-between;
+
+        @include r(991) {
+            background-color: $color-white;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            display: none;
+            align-content: space-between;
+            grid-template-columns: repeat(2, 1fr);
+            padding-top: 22vh;
+        }
     }
 
     &__left,
@@ -23,24 +41,53 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 86px;
-        height: 86px;
+        width: vw(86px);
+        height: vw(86px);
         z-index: 2;
         cursor: pointer;
         transition: transform $transition-base;
         @include colorSvgOnHover($color-primary);
+
+        svg {
+            width: vw(18px);
+            height: vw(18px);
+        }
+
+        @include r(991) {
+            height: auto;
+            padding: rem(15, 14) 0;
+
+            svg {
+                width: rem(18, 14);
+                height: rem(18, 14);
+            }
+        }
     }
 
     &__left {
         border-right: 1px solid $color-light;
+
+        @include r(991) {
+            order: 1;
+            width: 100%;
+            border-top: 1px solid $color-light;
+        }
     }
 
     &__right {
         border-left: 1px solid $color-light;
+        @include r(991) {
+            order: 2;
+            width: 100%;
+            border-top: 1px solid $color-light;
+        }
     }
 
     &__center {
-        position: relative;
+        @include r(991) {
+            order: 0;
+            grid-column: span 2;
+        }
     }
 
     &__nav {
@@ -50,30 +97,43 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: rem(50, 14);
+            gap: vw(50px);
+            padding: 0 vw(20px);
             @extend %reset-list;
+
+            @include r(991) {
+                flex-direction: column;
+            }
         }
 
         &-item {
-            &:nth-child(3) {
-                margin-right: rem(201, 14);
+            @include rmin(992) {
+                &:nth-child(3) {
+                    margin-right: vw(201px);
+                }
+                
+                &:nth-child(4) {
+                    margin-left: vw(201px);
+                }
             }
-            
-            &:nth-child(4) {
-                margin-left: rem(201, 14);
-            }
+            @extend %showFromBottom;
         }
         
         &-link {
             display: flex;
             align-items: center;
-            padding: rem(32.5, 14) 0;
+            padding: vw(32.5px) 0;
+            font-size: vw(14px);
             color: $color-gray;
             transition: color $transition-base;
             @include underlineOnHover;
 
             .no-touch &:hover {
                 color: $color-dark;
+            }
+
+            @include r(991) {
+                font-size: rem(14, 14);
             }
         }
     }
@@ -85,15 +145,32 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        padding: rem(28, 14) rem(200, 14);
+        padding: vw(28px) 0;
         transform: translate(-50%, -50%);
         color: $color-dark;
         @include colorSvgOnHover($color-primary);
 
+        @include r(991) {
+            position: relative;
+            top: auto;
+            left: auto;
+            z-index: 10;
+            transform: none;
+            padding: rem(10, 14) 0;
+            border-bottom: 1px solid $color-light;
+        }
+
         svg {
+            width: vw(30px);
+            height: vw(30px);
             transition: transform $transition-base,
                 fill $transition-base;
             transform-origin: 50% 50%;
+
+            @include r(991) {
+                width: rem(30, 14);
+                height: rem(30, 14);
+            }
         }
 
         .no-touch &:hover {
@@ -102,78 +179,26 @@
             }
         }
     }
-
-    &__overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        min-height: 37vh;
-        display: none;
-        background-color: #fff;
-        z-index: 8;
-        pointer-events: none;
-        border-radius: 0 0 40px 40px;
-        transition: all .3s ease-in-out;
-        .menu-open & {
-            pointer-events: auto;
-            animation: scale-in-ver-top 0.5s ease-in-out both;
-        }
-        @include r($menuMob - 1) {
-            display: block;
-        }
-    }
 }
 
-body.is-scrolled{
-    @include rmin(992){
-        .header__container {
-            padding-top: rem(10, 20);
-            padding-bottom: rem(10, 20);
-        }
-        .header__left{
-            transform: scale(.75) translateX(-16%);
-        }
+@include r(991){
+    html.overflow {
+        overflow: hidden;
     }
-}
 
-%showFromBottom{
-    @media (max-width: 991px ) {
-        opacity: 0;
-        .menu-open &{
+    .menu-open{
+        .header__container{
+            display: grid;
+        }
+
+        .header__right,
+        .header__left {
             animation: slide-in-bottom 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
         }
-        @for $i from 1 through 10 {
-            &:nth-child(#{$i}) {
-                animation-delay: .2s + ($i * .1s);
-            }
-        }
-    }
-}
 
-@include r($menuMob - 1){
-    .menu-open{
-        .header__right{
-            display: flex;
-        }
-        .layout__main, .layout__footer{
+        .main, .footer{
             filter: blur(18px);
         }
-    }
-}
-
-@keyframes underline-decor {
-    0%{
-        opacity: 1;
-        transform: scaleX(.6) scaleY(.2);
-    }
-    50%{
-        opacity: 1;
-        transform: scaleX(.6) scaleY(2);
-    }
-    100%{
-        opacity: 1;
-        transform: scaleX(1) scaleY(1);
     }
 }
 
@@ -188,16 +213,18 @@ body.is-scrolled{
     }
 }
 
-@keyframes scale-in-ver-top {
-    0% {
-        transform: scaleY(0);
-        transform-origin: 100% 0%;
-        opacity: 1;
-    }
+%showFromBottom {
+    @include r(991) {
+        opacity: 0;
 
-    100% {
-        transform: scaleY(1);
-        transform-origin: 100% 0%;
-        opacity: 1;
+        .menu-open & {
+            animation: slide-in-bottom 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+
+        @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+                animation-delay: .2s + ($i * .1s);
+            }
+        }
     }
 }

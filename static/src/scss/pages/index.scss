@@ -14,9 +14,31 @@
         z-index: 1;
     }
 
+    &__content {
+        padding-left: rem(15, 14);
+        padding-right: rem(15, 14);
+
+        @include rmin(576) {
+            padding-left: rem(30, 14);
+            padding-right: rem(30, 14);
+        }
+    }
+
     &__title {
         margin-bottom: vh(48px);
         text-align: center;
+    }
+
+    &__btn {
+        @include rmin(992) {
+            padding: vw(9.5px) vw(47.5px);
+            font-size: vw(14px);
+    
+            hr {
+                left: vw(-9px);
+                width: vw(20px);
+            }
+        }
     }
 
     &__bottom {
@@ -28,16 +50,25 @@
         grid-template-columns: repeat(4, 1fr);
         width: 100%;
 
+        @include r(480){
+            grid-template-columns: repeat(2, 1fr);
+        }
+
         &-item {
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid $color-white-light;
             font-weight: 800;
-            font-size: rem(20, 14);
+            font-size: vw(20px);
             text-align: center;
             color: $color-white;
-            padding: rem(27, 14) rem(15, 14);
+            padding: vw(27px) vw(15px);
+
+            @include r(480){
+                font-size: rem(14, 14);
+                padding: rem(14, 14) rem(8, 14);
+            }
         }
     }
 
@@ -68,6 +99,12 @@
 
         &::after {
             border: 0 solid transparent;
+        }
+
+        @include rmin(992) {
+            width: vw(40px);
+            height: vw(40px);
+            margin: vw(23px) auto;
         }
 
         @include hover {
@@ -102,10 +139,12 @@
 }
 
 .projects {
-    padding: rem(136, 14) 0;
+    margin-top: rem(68, 14);
+    padding: rem(68, 14) 0 rem(136, 14);
 
     @include r(991) {
-        padding: rem(100, 14) 0;
+        margin-top: rem(50, 14);
+        padding: rem(50, 14) 0 rem(100, 14);
     }
 
     &__title {
@@ -127,10 +166,6 @@
         @include r(991) {
             grid-template-columns: repeat(2, 1fr);
         }
-
-        // @include r(480) {
-        //     grid-template-columns: 1fr;
-        // }
     }
 
     .card {
@@ -330,10 +365,7 @@
 
         @include r(991) {
             grid-template-columns: repeat(2, 1fr);
-        }
-
-        @include r(480) {
-            grid-template-columns: 1fr;
+            row-gap: rem(70, 14);
         }
     }
 
@@ -343,6 +375,10 @@
         align-content: start;
         gap: rem(48, 14);
         width: 100%;
+
+        @include r(480){
+            gap: rem(20, 14);
+        }
     }
 
     &__row {
@@ -352,7 +388,7 @@
         gap: rem(8, 14);
         width: 100%;
 
-        h4 {
+        &-title {
             margin: 0;
             
             sup {
@@ -360,13 +396,19 @@
             }
         }
 
-        p, .link {
+        &-text, .link {
             font-family: $second-family;
             font-weight: 400;
             font-size: rem(13, 14);
             line-height: 1.85;
             color: $color-dark;
             margin: 0;
+
+            @include rmin(992) {
+                br {
+                    display: none;
+                }
+            }
         }
     }
 
@@ -392,8 +434,16 @@
     .contacts__form {
         gap: rem(15, 14);
 
-        h4 {
+        &-title {
             margin: 0;
+        }
+
+        @include r(991){
+            grid-column: span 2;
+
+            &-title {
+                text-align: center;
+            }
         }
     }
 }

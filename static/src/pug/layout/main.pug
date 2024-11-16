@@ -1,17 +1,8 @@
 include ../utils/mixins
 include ../utils/includes
-- var pathPrefix = '';
-- var title = '';
 
-- var stageURL = '';
-- var currentURL = 'http://localhost:8081';
-
-// metablocks
-- var pathUrl = 'http://localhost:8081/';
 - var metaTitle = 'Ремонт и дизайн';
 - var metaDescription ='Ремонт и дизайн в Москве и Московской области';
-//- - var metaOgImage = `${pathUrl}/img/socials/og_image-${LANG}.jpg`;
-//- - var metaTwImage = `${pathUrl}/img/socials/twittercard_image-${LANG}.jpg`;
 
 block variables
 
@@ -24,7 +15,7 @@ html(lang='ru')
         meta(content="telephone=no" name="format-detection")
         meta(name="HandheldFriendly" content="true")
         +meta()
-        //- +favicon()
+        +favicon()
 
         link(rel='stylesheet' href='/css/app.css')
 

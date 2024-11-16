@@ -1,7 +1,6 @@
 extends ../layout/main
 
 block variables
-    - title = 'title';
     - pageClass = '';
 
     -
@@ -71,7 +70,7 @@ block content
                 h1.intro__title 
                     | Ремонт #[span.outlined-text и] дизайн #[br]
                     | #[span.outlined-text в Москве и Московской области]
-                +button("Оставить заявку")
+                +button("Оставить заявку", "intro__btn")
             .intro__bottom
                 .intro__services
                     .intro__services-item
@@ -111,26 +110,26 @@ block content
             .contacts__wrap 
                 .contacts__col 
                     .contacts__row 
-                        h4 Офис
-                        p Москва, ул. Уличная, д. 1, оф. 1
+                        h4.contacts__row-title Офис
+                        p.contacts__row-text Москва, ул. Уличная, д. 1, оф. 1
                     .contacts__row 
-                        h4 E-mail
+                        h4.contacts__row-title E-mail
                         a.link(href="mailto:company@company.ru") company@company.ru
                     .contacts__row 
-                        h4 Социальные сети
+                        h4.contacts__row-title Социальные сети
                         .social__links 
                             a.social__links-item(href="#") 
                             a.social__links-item(href="#") 
                             a.social__links-item(href="#") 
                 .contacts__col 
                     .contacts__row 
-                        h4 Режим работы
-                        p Пн-Вт: 10#[sup 00] — 19#[sup 00]; Сб-Вс: 10#[sup 00] — 15#[sup 00]
+                        h4.contacts__row-title Режим работы
+                        p.contacts__row-text Пн-Вт: 10#[sup 00] — 19#[sup 00]; #[br]Сб-Вс: 10#[sup 00] — 15#[sup 00]
                     .contacts__row 
-                        h4 Телефон
+                        h4.contacts__row-title Телефон
                         a.link(href="tel:+78009000000") 8 (800) 900-00-00
                 .contacts__col.contacts__form
-                    h4 Остались вопросы?
+                    h4.contacts__form-title Остались вопросы?
                     form.form(action="#")
                         .form__field 
                             label.form__label(for="name") Ваше имя

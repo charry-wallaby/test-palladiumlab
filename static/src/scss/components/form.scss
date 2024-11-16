@@ -75,6 +75,8 @@
     }
 
     &__btn {
-        margin-left: 0;
+        @include rmin(992) {
+            margin-left: 0;
+        }
     }
 }

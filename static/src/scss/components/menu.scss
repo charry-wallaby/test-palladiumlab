@@ -1,8 +1,10 @@
 .menu-trigger {
-    position: relative;
+    position: absolute;
+    top: rem(15, 14);
+    right: rem(15, 14);
     z-index: 10;
-    width: rem(27);
-    height: rem(18);
+    width: rem(27, 14);
+    height: rem(18, 14);
     margin-left: rem(20px);
     padding: 0;
     color: currentColor;
@@ -23,7 +25,7 @@
         background: transparent;
     }
 
-    @include rmin($menuMob) {
+    @include rmin($menuMob + 1) {
         display: none;
     }
 
@@ -31,11 +33,11 @@
         margin-left: auto;
         display: block;
         width: 100%;
-        height: rem(3);
+        height: 3px;
         background-color: $color-dark;
         position: relative;
         transition: transform $transition-base;
-        border-radius: rem(5);
+        border-radius: 5px;
 
         &::before,
         &::after {

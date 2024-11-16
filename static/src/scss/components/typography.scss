@@ -1,15 +1,23 @@
 h1,.h1{
     font-weight: 800;
-    font-size: vh(64px);
+    font-size: rem(30, 14);
+    font-size: clamp(rem(28, 14), 8vw, rem(36, 14));
     margin: 0;
     line-height: 1.12;
 
+    @include rmin(481) {
+        font-size: clamp(vh(48px), 8vw, vh(64px));
+    }
 }
 h2,.h2{
     font-weight: 800;
     font-size: rem(32, 14);
     line-height: 1.25;
     margin: 0;
+
+    @include r(480) {
+        font-size: rem(28, 14);
+    }
 }
 h3, .h3{
     font-weight: 800;
